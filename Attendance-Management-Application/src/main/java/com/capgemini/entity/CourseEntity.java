@@ -101,7 +101,10 @@ public class CourseEntity {
 		super();
 	}
 
-	
-	
-	
+	@Override
+	public String toString() {
+		return "CourseEntity [courseId=" + courseId + ", courseName=" + courseName + ", description=" + description
+				+ ", studentList=" + studentList + ", subjectList=" + subjectList + "]";
+	}
+
 }

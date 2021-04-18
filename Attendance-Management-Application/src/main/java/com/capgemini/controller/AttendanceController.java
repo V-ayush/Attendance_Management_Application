@@ -27,6 +27,7 @@ public class AttendanceController {
 	@Autowired
 	AttendanceService attendanceService;
 	
+	
  
 	//Update Attendance By ID
 	@PutMapping(path="/updateAttendance/{attendanceId}") 
@@ -41,7 +42,9 @@ public class AttendanceController {
 	public ResponseEntity<List<AttendanceEntity>> getAttendance() 
 			throws RecordNotFoundException
 	     {
-	             return new ResponseEntity<List<AttendanceEntity>>(attendanceService.getAttendance(),HttpStatus.FOUND);
+		      List<AttendanceEntity> se= attendanceService.getAttendance();
+		      ResponseEntity<List<AttendanceEntity>> fe =new ResponseEntity<List<AttendanceEntity>>(se,HttpStatus.FOUND);
+		      return fe;
 	     }
 	
 	//Delete Attendance By Id

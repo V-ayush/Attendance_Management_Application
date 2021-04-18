@@ -23,8 +23,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
-
-
 @Entity
 @Table(name = "Attendances")
 public class AttendanceEntity {
@@ -35,7 +33,7 @@ public class AttendanceEntity {
 	private int attendanceId;
 
     @NotEmpty(message="Please Enter Valid Semester")
-    @Pattern(regexp="(1|2|3|4|5|6|7|8)", message="Please Enter Semester In Only Number")
+    @Pattern(regexp="(1|2|3|4|5|6|7|8)", message="Please Enter Semester In Only Numbers")
 	private String semester;
 	
     @NotNull
@@ -45,7 +43,7 @@ public class AttendanceEntity {
     private LocalDate currentDate;
 	
     @NotEmpty(message="Please Enter Valid Status (Present/Absent)")
-    @Pattern(regexp="(absent|Absent|present|Present)", message="Please enter valid Status")
+    @Pattern(regexp="(ABSENT|absent|Absent|PRESENT|present|Present)", message="Please enter valid Status")
 	private String status;
     
     
@@ -135,14 +133,12 @@ public class AttendanceEntity {
 		super();
 	}
 
-	@Override
+    @Override
 	public String toString() {
 		return "AttendanceEntity [attendanceId=" + attendanceId + ", semester=" + semester + ", currentDate="
-				+ currentDate + ", status=" + status + ", studententity=" + studentEntity + ", subjectEntity="
+				+ currentDate + ", status=" + status + ", studentEntity=" + studentEntity + ", subjectEntity="
 				+ subjectEntity + "]";
 	}
+
 }
-
-
-
 

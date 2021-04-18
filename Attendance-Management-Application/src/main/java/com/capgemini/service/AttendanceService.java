@@ -14,7 +14,8 @@ public interface AttendanceService {
 	public List<AttendanceEntity> getAttendance() throws RecordNotFoundException;
 		
 	//For Updating the details of the Attendance By Attendance ID
-	public AttendanceEntity updateAttendanceById(int attendanceId,AttendanceEntity entity)throws AttendanceIdNotFoundException;
+	public AttendanceEntity updateAttendanceById(int attendanceId,AttendanceEntity entity)
+			throws AttendanceIdNotFoundException;
 	
 	//For deleting records of Attendance by Attendance ID
 	public String deleteById(int attendanceId) throws RecordNotFoundException;

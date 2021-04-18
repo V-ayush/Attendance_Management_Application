@@ -17,10 +17,16 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 
 @Entity
@@ -44,11 +50,15 @@ public class StudentEntity {
 	@Size(min=2, message="Not a valid last name")
 	private String lastName;
 	
+	@NotNull
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "DD/MM/YYYY")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	@Column(name = "DOB")
 	private LocalDate dateOfBirth;
 	
 	@NotEmpty
-	@Pattern(regexp="^(?:m|M|male|Male|f|F|female|Female)$", message="Invalid Entry")
+	@Pattern(regexp="^(?:m|M|male|Male|MALE|f|F|female|Female|FEMALE)$", message="Invalid Entry")
 	private String gender;
 	
 	@Column(name = "mobile_no")
@@ -56,7 +66,8 @@ public class StudentEntity {
 	@Pattern(regexp="(^[6-9][0-9]{9}$)", message="Invalid Mobile Number")
 	private String mobileNumber;
 	
-	@NotEmpty
+	@NotEmpty(message="Please Enter Valid Semester")
+    @Pattern(regexp="(1|2|3|4|5|6|7|8)", message="Please Enter Semester In Only Numbers")
 	private String semester;
 	
 	@Column(name = "email_id")

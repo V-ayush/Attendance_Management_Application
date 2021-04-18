@@ -1,12 +1,9 @@
 package com.capgemini.entity;
 
-
-
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,8 +34,7 @@ public class FacultyEntity {
     @OneToMany(cascade=CascadeType.ALL, mappedBy="facultyentity")
   	private List<SubjectEntity> subjectList;
 
-
-	public List<SubjectEntity> getSubjectList() {
+    public List<SubjectEntity> getSubjectList() {
 		return subjectList;
 	}
 
@@ -76,6 +72,12 @@ public class FacultyEntity {
 
 	public FacultyEntity() {
 		super();
+	}
+
+	@Override
+	public String toString() {
+		return "FacultyEntity [facultyId=" + facultyId + ", facultyName=" + facultyName + ", subjectList=" + subjectList
+				+ "]";
 	}
 
 	

@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,9 +38,10 @@ import com.capgemini.repository.AttendanceRepository;
 @SpringBootTest
 class AttendanceManagementApplicationTest  {
 
-//-------------------------------------------Attendance-------------------------------------
+//-------------------------------------------Attendance---------------------------------------------------------------------------
 	 @Autowired
 	 AttendanceService AttendanceService;
+	 
 	 @MockBean
 	 AttendanceRepository AttendanceRepository;
 	 
@@ -49,13 +52,13 @@ class AttendanceManagementApplicationTest  {
 		 AttendanceEntity attendance = new AttendanceEntity();
 		 attendance.setAttendanceId(1);
 		 attendance.setSemester("1");
-		//attendance.setCurrentDate(null);
+		
 		 attendance.setStatus("Present");
 		 
 		 AttendanceEntity attendance1 = new AttendanceEntity();
 		 attendance1.setAttendanceId(2);
 		 attendance1.setSemester("1");
-		 //attendance1.setCurrentDate(null);
+	
 		 attendance1.setStatus("Absent");
 		 
 		 List<AttendanceEntity> attendanceList=new ArrayList<>();
@@ -73,7 +76,7 @@ class AttendanceManagementApplicationTest  {
 		AttendanceEntity attendance = new AttendanceEntity();
 		 attendance.setAttendanceId(1);
 		 attendance.setSemester("1");
-		 //attendance.setCurrentDate(null);
+		 
 		 attendance.setStatus("Present");
 	 
 		 Optional<AttendanceEntity> attendance1 =Optional.ofNullable(attendance);
@@ -91,7 +94,7 @@ class AttendanceManagementApplicationTest  {
 		AttendanceEntity attendance = new AttendanceEntity();
 		 attendance.setAttendanceId(1);
 		 attendance.setSemester("1");
-		 //attendance.setCurrentDate(null);
+		
 		 attendance.setStatus("Present");
 		 
 		 Optional<AttendanceEntity> attendance1 =Optional.ofNullable(attendance);
@@ -107,13 +110,13 @@ class AttendanceManagementApplicationTest  {
 		 AttendanceEntity attendance = new AttendanceEntity();
 		 attendance.setAttendanceId(1);
 		 attendance.setSemester("1");
-		//attendance.setCurrentDate(null);
+		 
 		 attendance.setStatus("Present");
 		 
 		 AttendanceEntity attendance1 = new AttendanceEntity();
 		 attendance1.setAttendanceId(2);
 		 attendance1.setSemester("1");
-		 //attendance1.setCurrentDate(null);
+		
 		 attendance1.setStatus("Absent");
 		 
 		 List<AttendanceEntity> attendanceList=new ArrayList<>();
@@ -130,13 +133,13 @@ class AttendanceManagementApplicationTest  {
 		 AttendanceEntity attendance = new AttendanceEntity();
 		 attendance.setAttendanceId(1);
 		 attendance.setSemester("1");
-		//attendance.setCurrentDate(null);
+		
 		 attendance.setStatus("Present");
 		 
 		 AttendanceEntity attendance1 = new AttendanceEntity();
 		 attendance1.setAttendanceId(2);
 		 attendance1.setSemester("1");
-		 //attendance1.setCurrentDate(null);
+	
 		 attendance1.setStatus("Absent");
 		 
 		 List<AttendanceEntity> attendanceList=new ArrayList<>();
@@ -148,7 +151,7 @@ class AttendanceManagementApplicationTest  {
 	 }
 	 
 	
-//-----------------------------------------------------------------Courses-----------------------------------------
+//--------------------------------------------------------Courses---------------------------------------------------------------
 	 @Autowired
 	 CourseService courseService;
 	 @MockBean
@@ -253,7 +256,7 @@ class AttendanceManagementApplicationTest  {
 		 assertThat(courseService.findCourseByName("BE")).isEqualTo(courseList);
 	 }
 	
-//--------------------------------------------------Faculty---------------------------------------	
+//--------------------------------------------------Faculty------------------------------------------------------------------------	
 	@Autowired
 	private FacultyService facultyService;
 	
@@ -356,7 +359,7 @@ class AttendanceManagementApplicationTest  {
 		Mockito.when(facultyRepository.findByfacultyNameIgnoreCaseContains("Madhulika")).thenReturn(facultyList);
 		  assertThat(facultyService.findByfacultyName("Madhulika")).isEqualTo(facultyList);
 	}
-	//-----------------------------------------------------------------Students---------------------------
+//---------------------------------------------------Students------------------------------------------------------------------
 	@Autowired
 	private StudentService studentService;
 	
@@ -372,10 +375,7 @@ class AttendanceManagementApplicationTest  {
 		std.setStudentId(1);
 		std.setFirstName("Kamal");
 		std.setLastName("Sahu");
-		//std.setDateOfBirth("1998-07-21");
-		
-		//ticket.setBookingDate(new Date());
-		std.setGender("Male");
+	    std.setGender("Male");
 		std.setMobileNumber("8225864337");
 		std.setEmailId("kamal@gmail.com");
 		std.setSemester("2");
@@ -387,17 +387,13 @@ class AttendanceManagementApplicationTest  {
 		std1.setStudentId(2);
 		std1.setFirstName("Kunal");
 		std1.setLastName("Verma");
-		//std.setDateOfBirth("1998-07-21");
-		
-		//	ticket.setBookingDate(new Date());
-		std1.setGender("Male");
+        std1.setGender("Male");
 		std1.setMobileNumber("8225864338");
 		std1.setEmailId("kunal@gmail.com");
 		std1.setSemester("2");
 		std1.setFatherEmailId("father1@gmail.com");
 		std.setFatherMobileNumber("8455445787");
-		
-		List<StudentEntity> stdList = new ArrayList<>();
+	    List<StudentEntity> stdList = new ArrayList<>();
 		stdList.add(std);
 		stdList.add(std1);
 		
@@ -412,9 +408,7 @@ class AttendanceManagementApplicationTest  {
 		std.setStudentId(1);
 		std.setFirstName("Kamal");
 		std.setLastName("Sahu");
-		//std.setDateOfBirth(LocalDate.of(29,07,1998));
-		
-		std.setGender("Male");
+	    std.setGender("Male");
 		std.setMobileNumber("8225864337");
 		std.setEmailId("kamal@gmail.com");
 		std.setSemester("2");
@@ -434,9 +428,7 @@ class AttendanceManagementApplicationTest  {
 		std.setStudentId(1);
 		std.setFirstName("Kamal");
 		std.setLastName("Sahu");
-		//std.setDateOfBirth("1998-07-21");
-		//	ticket.setBookingDate(new Date());
-		std.setGender("Male");
+	    std.setGender("Male");
 		std.setMobileNumber("8225864337");
 		std.setEmailId("kamal@gmail.com");
 		std.setSemester("2");
@@ -460,10 +452,7 @@ class AttendanceManagementApplicationTest  {
 		std.setStudentId(2);
 		std.setFirstName("Kunal");
 		std.setLastName("Verma");
-		//std.setDateOfBirth("1998-07-21");
-		
-		//	ticket.setBookingDate(new Date());
-		std.setGender("Male");
+	    std.setGender("Male");
 		std.setMobileNumber("8225864338");
 		std.setEmailId("kunal@gmail.com");
 		std.setSemester("2");
@@ -489,10 +478,6 @@ class AttendanceManagementApplicationTest  {
 		std.setStudentId(1);
 		std.setFirstName("Kamal");
 		std.setLastName("Sahu");
-		
-		//std.setDateOfBirth("1998-07-21");
-	
-		//	ticket.setBookingDate(new Date());
 		std.setGender("Male");
 		std.setMobileNumber("8225864337");
 		std.setEmailId("kamal@gmail.com");
@@ -505,10 +490,6 @@ class AttendanceManagementApplicationTest  {
 		std1.setStudentId(2);
 		std1.setFirstName("Ayush");
 		std1.setLastName("Verma");
-		
-		//std1.setDateOfBirth("1998-07-21");
-	
-		//	ticket.setBookingDate(new Date());
 		std1.setGender("Male");
 		std1.setMobileNumber("8225894337");
 		std1.setEmailId("Ayush@gmail.com");
@@ -536,10 +517,6 @@ class AttendanceManagementApplicationTest  {
 		std.setStudentId(1);
 		std.setFirstName("Kamal");
 		std.setLastName("Sahu");
-		
-		//std.setDateOfBirth("1998-07-21");
-	
-		//	ticket.setBookingDate(new Date());
 		std.setGender("Male");
 		std.setMobileNumber("8225864337");
 		std.setEmailId("kamal@gmail.com");
@@ -551,10 +528,6 @@ class AttendanceManagementApplicationTest  {
 		std1.setStudentId(2);
 		std1.setFirstName("Ayush");
 		std1.setLastName("Verma");
-		
-		//std1.setDateOfBirth("1998-07-21");
-	
-		//	ticket.setBookingDate(new Date());
 		std1.setGender("Male");
 		std1.setMobileNumber("8225894337");
 		std1.setEmailId("Ayush@gmail.com");
@@ -578,10 +551,6 @@ class AttendanceManagementApplicationTest  {
 		std.setStudentId(1);
 		std.setFirstName("Kamal");
 		std.setLastName("Sahu");
-		
-		//std.setDateOfBirth("1998-07-21");
-	
-		//	ticket.setBookingDate(new Date());
 		std.setGender("Male");
 		std.setMobileNumber("8225864337");
 		std.setEmailId("kamal@gmail.com");
@@ -593,10 +562,6 @@ class AttendanceManagementApplicationTest  {
 		std1.setStudentId(2);
 		std1.setFirstName("Ayush");
 		std1.setLastName("Verma");
-		
-		//std1.setDateOfBirth("1998-07-21");
-	
-		//	ticket.setBookingDate(new Date());
 		std1.setGender("Male");
 		std1.setMobileNumber("8225894337");
 		std1.setEmailId("Ayush@gmail.com");
@@ -612,7 +577,7 @@ class AttendanceManagementApplicationTest  {
 	    assertThat(studentService.findStudentByFirstNameAndLastName("Ayush","Verma")).isEqualTo(studentList);
 	}
 	
-	//------------------------------------------------------------Subject----------------------------------
+	//------------------------------------------------------Subject----------------------------------------------------------------
 	
 	@Autowired
 	 SubjectService subjectService;

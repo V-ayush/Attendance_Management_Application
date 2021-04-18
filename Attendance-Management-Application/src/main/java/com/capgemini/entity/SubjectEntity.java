@@ -9,10 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,11 +31,12 @@ public class SubjectEntity {
 	@Size(max = 50, message = "Not a valid subject name")
 	private String subjectName;
 	
-	@NotEmpty
+	@NotEmpty(message="Please Enter Valid Semester")
+    @Pattern(regexp="(1|2|3|4|5|6|7|8)", message="Please Enter Semester In Only Numbers")
 	private String subjectSemester;
 	
 	@NotEmpty
-	@Size(max = 100)
+	@Size(max = 100, message="Description length should be less than 100 characters")
 	private String description;
 	
 
@@ -44,15 +45,10 @@ public class SubjectEntity {
     @JoinColumn(name="course_Id")
 	private CourseEntity course;
 
-
-	public int getCourseId() {
+    public int getCourseId() {
    	return course.getCourseId();
    }
-	
-//    @OneToMany(cascade=CascadeType.ALL,mappedBy="subjectEntity")
-//	private AttendanceEntity attendance;
-//	
-	
+
 	@JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="faculty_Id")
@@ -129,7 +125,11 @@ public class SubjectEntity {
 		super();
 	}
 
+	@Override
+	public String toString() {
+		return "SubjectEntity [subjectId=" + subjectId + ", subjectName=" + subjectName + ", subjectSemester="
+				+ subjectSemester + ", description=" + description + ", course=" + course + ", facultyentity="
+				+ facultyentity + "]";
+	}
 
-	
-	
 }

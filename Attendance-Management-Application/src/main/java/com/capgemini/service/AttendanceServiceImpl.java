@@ -110,7 +110,7 @@ public class AttendanceServiceImpl implements AttendanceService{
 	public List<AttendanceEntity> findAttendanceBySemester(String semester) 
 			throws RecordNotFoundException 
 		{
-			List<AttendanceEntity> entity = (List<AttendanceEntity>) attendanceRepository.findBySemester(semester);
+			List<AttendanceEntity> entity = attendanceRepository.findBySemester(semester);
 			if(entity.isEmpty())
 					throw new RecordNotFoundException("No Such Record Found");
 			return entity;
