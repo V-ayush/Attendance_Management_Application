@@ -1,6 +1,6 @@
 package com.capgemini.exception;
 
-
+//Exception if given data is already present in the database
 public class DuplicateRecordException  extends Exception
 {
 	/**

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.capgemini.entity.AttendanceEntity;
 import com.capgemini.exception.AttendanceIdNotFoundException;
-import com.capgemini.exception.DuplicateRecordException;
 import com.capgemini.exception.RecordNotFoundException;
 import com.capgemini.exception.StudentNotFoundException;
 import com.capgemini.exception.SubjectNotFoundException;
@@ -31,46 +30,51 @@ public class AttendanceController {
  
 	//Update Attendance By ID
 	@PutMapping(path="/updateAttendance/{attendanceId}") 
-	public ResponseEntity<AttendanceEntity> updateAttendById(@Valid @PathVariable int attendanceId,@Valid @RequestBody AttendanceEntity entity)throws AttendanceIdNotFoundException
-	{
-		return new ResponseEntity<AttendanceEntity>(attendanceService.updateAttendanceById(attendanceId,entity),HttpStatus.ACCEPTED);
-	}
+	public ResponseEntity<AttendanceEntity> updateAttendById(@Valid @PathVariable int attendanceId,@Valid @RequestBody AttendanceEntity entity)
+			throws AttendanceIdNotFoundException
+	     {
+	             return new ResponseEntity<AttendanceEntity>(attendanceService.updateAttendanceById(attendanceId,entity),HttpStatus.ACCEPTED);
+	     }
 	
 	//Get All Attendance
 	@GetMapping(path="/getAllAttendance")
-	public ResponseEntity<List<AttendanceEntity>> getAttendance() throws RecordNotFoundException{
-	   return new ResponseEntity<List<AttendanceEntity>>(attendanceService.getAttendance(),HttpStatus.FOUND);
-	}
+	public ResponseEntity<List<AttendanceEntity>> getAttendance() 
+			throws RecordNotFoundException
+	     {
+	             return new ResponseEntity<List<AttendanceEntity>>(attendanceService.getAttendance(),HttpStatus.FOUND);
+	     }
 	
 	//Delete Attendance By Id
 	@DeleteMapping(path="/deleteAttendanceById/{attendanceId}") 
 	public ResponseEntity<String> deleteAttendanceById(@Valid @PathVariable int attendanceId) throws RecordNotFoundException
-	{
-		return new ResponseEntity<String>(attendanceService.deleteById(attendanceId),HttpStatus.ACCEPTED);
-	}
+	     {
+	      		 return new ResponseEntity<String>(attendanceService.deleteById(attendanceId),HttpStatus.ACCEPTED);
+	     }
 	
+	//Add Attendance with Subject Id and StudentId(roll_no)
 	@PostMapping(path="/addAttendanceWithStudentIdAndSubjectId/{studentId}/{subjectId}")
 	public ResponseEntity<AttendanceEntity> addAttendWithStudentIdAndSubjectId
 	(@Valid @PathVariable int studentId, @Valid @PathVariable int subjectId, @Valid @RequestBody AttendanceEntity entity)
 			throws StudentNotFoundException, SubjectNotFoundException
-	{
-		return new ResponseEntity<AttendanceEntity>(attendanceService.addAttendanceWithStudentIdAndSubjectId(entity,studentId,subjectId),HttpStatus.CREATED);
-	}
+	     {
+	             return new ResponseEntity<AttendanceEntity>(attendanceService.addAttendanceWithStudentIdAndSubjectId
+	            		 (entity,studentId,subjectId),HttpStatus.CREATED);
+	     }
 	
+	//Retrieve Attendance Details By Semester
 	@GetMapping(path="/getAttendanceBySemester/{semester}") 
 	public ResponseEntity<List<AttendanceEntity>> findAttendanceBySemester(@Valid @PathVariable String semester) 
 			throws RecordNotFoundException
-	{
-		  List<AttendanceEntity> ae=attendanceService.findAttendanceBySemester(semester);
-		  ResponseEntity<List<AttendanceEntity>> re=new ResponseEntity<List<AttendanceEntity>>(ae,HttpStatus.FOUND);
-		  return re;
-	}
+	     {
+	             return new ResponseEntity<List<AttendanceEntity>>(attendanceService.findAttendanceBySemester(semester),HttpStatus.FOUND);
+	     }
 	  
-	
+	//Retrieve Attendance Details By Status (Absent/present)
 	@GetMapping(path="/getAttendanceByStatus/{status}")
 	public ResponseEntity<List<AttendanceEntity>> findAttendanceByStatus(@Valid @PathVariable String status) 
 			throws RecordNotFoundException
-	{
-		return new ResponseEntity<List<AttendanceEntity>>(attendanceService.findAttendanceByStatus(status),HttpStatus.FOUND);
-	}
+      	{
+	             return new ResponseEntity<List<AttendanceEntity>>(attendanceService.findAttendanceByStatus(status),HttpStatus.FOUND);
+	    }
+	
 }

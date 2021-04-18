@@ -10,7 +10,7 @@ import com.capgemini.entity.CourseEntity;
 @Repository
 public interface CourseRepository extends JpaRepository<CourseEntity,Integer>{
 
-	//CourseEntity findByCourseNameIgnoreCase(String courseName);
-	
+    
+	//It will return the list of details of Course by checking the Course Name by Ignoring Case (AUTO GENERATED QUERY BY JPA) 
 	List<CourseEntity> findByCourseNameIgnoreCaseContains(String courseName);
 }

@@ -2,6 +2,7 @@ package com.capgemini.exception;
 
 import java.time.LocalDateTime;
 
+//Error Details to be displayed in the exception
 public class ErrorDetails {
 	
 	private LocalDateTime localDateTime;

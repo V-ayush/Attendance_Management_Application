@@ -28,48 +28,51 @@ public class FacultyController {
 	@Autowired
 	FacultyService facultyService;
 	
+	//Add Faculty Details
 	@PostMapping(path="/addFaculty")
-	public ResponseEntity<FacultyEntity> addFaculty(@Valid @RequestBody FacultyEntity se)
-	{
-		FacultyEntity se1 = facultyService.addFaculty(se);
-		
-		return new ResponseEntity<FacultyEntity>(se1,HttpStatus.CREATED);
-	}
+	public ResponseEntity<FacultyEntity> addFaculty(@Valid @RequestBody FacultyEntity entity)
+		{
+				return new ResponseEntity<FacultyEntity>(facultyService.addFaculty(entity),HttpStatus.CREATED);
+		}
 	
+	//Retrieve Faculty using Faculty Id
 	@GetMapping(path="/getFacultyById/{facultyId}")
-	public ResponseEntity<FacultyEntity> getFacultyById(@Valid @PathVariable int facultyId) throws FacultyIdNotFoundException
-	{
-		FacultyEntity fe = facultyService.getFacultyById(facultyId);
-		return new ResponseEntity<FacultyEntity>(fe, HttpStatus.FOUND);
-	}
+	public ResponseEntity<FacultyEntity> getFacultyById(@Valid @PathVariable int facultyId) 
+			throws FacultyIdNotFoundException
+		{
+				return new ResponseEntity<FacultyEntity>(facultyService.getFacultyById(facultyId), HttpStatus.FOUND);
+		}
 	
+	//Delete Faculty using Faculty Id
 	@DeleteMapping(path="/deleteFacultyById/{facultyId}")
-	public ResponseEntity<String> deleteFacultyById(@Valid @PathVariable int facultyId) throws RecordNotFoundException
-	{
-		facultyService.deleteFacultyById(facultyId);
-		return new ResponseEntity<String>("Deleted by Id from Database", HttpStatus.OK);
-	}
+	public ResponseEntity<String> deleteFacultyById(@Valid @PathVariable int facultyId) 
+			throws RecordNotFoundException
+		{
+				facultyService.deleteFacultyById(facultyId);
+				return new ResponseEntity<String>("Deleted by Id from Database", HttpStatus.ACCEPTED);
+		}
 	
+	//Retrieve All Faculties details
 	@GetMapping(path="/getAllFaculties")
-	public ResponseEntity<List<FacultyEntity>> getAllFaculty() throws RecordNotFoundException
-	{
-		
-		List<FacultyEntity> fe = facultyService.getAllFaculty();
-		return new ResponseEntity<List<FacultyEntity>>(fe, HttpStatus.OK);
-		
-	}
+	public ResponseEntity<List<FacultyEntity>> getAllFaculty() 
+			throws RecordNotFoundException
+		{
+				return new ResponseEntity<List<FacultyEntity>>(facultyService.getAllFaculty(), HttpStatus.FOUND);
+		}
 	
+	//Update faculty details using faculty Id
 	@PutMapping(path="/updateFacultyById/{facultyId}")
-	public ResponseEntity<FacultyEntity> updateFacultyById(@Valid @PathVariable int facultyId, @Valid @RequestBody FacultyEntity se) throws FacultyIdNotFoundException
-	{
-		FacultyEntity fe = facultyService.updateFacultyById(facultyId, se);
-		return new ResponseEntity<FacultyEntity>(fe, HttpStatus.ACCEPTED);
-	}
+	public ResponseEntity<FacultyEntity> updateFacultyById(@Valid @PathVariable int facultyId, @Valid @RequestBody FacultyEntity entity) 
+			throws FacultyIdNotFoundException
+		{
+				return new ResponseEntity<FacultyEntity>(facultyService.updateFacultyById(facultyId, entity), HttpStatus.ACCEPTED);
+		}
 	
+	//Retrieve faculty details by faculty name 
     @GetMapping(path="/getFacultyByName/{facultyName}") 
     public ResponseEntity<List<FacultyEntity>> findFacultyByName(@PathVariable String facultyName) 
-    		 throws RecordNotFoundException{ 
-		List<FacultyEntity>fe=facultyService.findByfacultyName(facultyName); 
-	    return new ResponseEntity<List<FacultyEntity>>(fe,HttpStatus.OK);
-	}
+    		 throws RecordNotFoundException
+      	{ 
+				return new ResponseEntity<List<FacultyEntity>>(facultyService.findByfacultyName(facultyName),HttpStatus.FOUND);
+      	}
 }

@@ -23,6 +23,9 @@ public interface CourseService {
     //For deleting records of Course by Course ID
     public String deleteByCourseId(int courseId) throws RecordNotFoundException;
     
+    //For Getting the details of Course by using Course Name
     public List<CourseEntity> findCourseByName(String courseName) throws RecordNotFoundException;	
+    
+    public boolean getCourseExistById(int courseId);
     
 }

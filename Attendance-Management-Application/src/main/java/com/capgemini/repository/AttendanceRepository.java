@@ -10,8 +10,9 @@ import com.capgemini.entity.AttendanceEntity;
 public interface AttendanceRepository extends JpaRepository<AttendanceEntity,Integer>{
 
  
-   // AttendanceEntity findByAttendanceId(int attendanceId);
+    //It will return the list of details Attendance by checking the status
     List<AttendanceEntity> findByStatusIgnoreCase(String status);
 	
+    //It will return the list of details Attendance by checking the semester
 	List<AttendanceEntity> findBySemester(String semester);
 }

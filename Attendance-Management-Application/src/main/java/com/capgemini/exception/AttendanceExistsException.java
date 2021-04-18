@@ -1,6 +1,6 @@
 package com.capgemini.exception;
 
-
+//Exception If providing attendance is already present in the database
 public class AttendanceExistsException  extends Exception
 {
 

@@ -1,5 +1,6 @@
 package com.capgemini.exception;
 
+//Exception if Given Course Id is not present in the database
 public class CourseIdNotFoundException extends Exception {
 	
 	/**

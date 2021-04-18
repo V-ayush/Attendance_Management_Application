@@ -1,6 +1,6 @@
 package com.capgemini.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,11 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -47,7 +45,7 @@ public class StudentEntity {
 	private String lastName;
 	
 	@Column(name = "DOB")
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	
 	@NotEmpty
 	@Pattern(regexp="^(?:m|M|male|Male|f|F|female|Female)$", message="Invalid Entry")
@@ -129,11 +127,11 @@ public class StudentEntity {
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -186,7 +184,7 @@ public class StudentEntity {
 	}
 
 	public StudentEntity(int studentId, @NotEmpty @Size(min = 2, message = "Not a valid first name") String firstName,
-			@NotEmpty @Size(min = 2, message = "Not a valid last name") String lastName, Date dateOfBirth,
+			@NotEmpty @Size(min = 2, message = "Not a valid last name") String lastName, LocalDate dateOfBirth,
 			@NotEmpty @Pattern(regexp = "^(?:m|M|male|Male|f|F|female|Female)$", message = "Invalid Entry") String gender,
 			@NotEmpty @Pattern(regexp = "(^[6-9][0-9]{9}$)", message = "Invalid Mobile Number") String mobileNumber,
 			@NotEmpty String semester, @Email(message = "invalid email") String emailId,
