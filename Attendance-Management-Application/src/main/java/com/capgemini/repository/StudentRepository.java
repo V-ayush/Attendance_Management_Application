@@ -11,5 +11,7 @@ import com.capgemini.entity.StudentEntity;
 public interface StudentRepository extends JpaRepository<StudentEntity,Integer>{
 
 	
-	List<StudentEntity> findAllByFirstName(String firstName);
+	List<StudentEntity> findAllByFirstNameIgnoreCase(String firstName);
+	
+	List<StudentEntity> findAllByFirstNameIgnoreCaseAndLastNameIgnoreCase(String firstName,String lastName);
 }
