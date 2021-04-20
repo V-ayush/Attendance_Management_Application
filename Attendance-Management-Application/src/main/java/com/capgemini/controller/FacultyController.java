@@ -22,7 +22,6 @@ import com.capgemini.exception.RecordNotFoundException;
 import com.capgemini.service.FacultyService;
 
 @RestController
-@RequestMapping("/Faculty")
 public class FacultyController {
 	
 	@Autowired

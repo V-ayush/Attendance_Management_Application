@@ -1,7 +1,5 @@
 package com.capgemini.entity;
 
-
-import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
+import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -37,10 +35,7 @@ public class AttendanceEntity {
 	private String semester;
 	
     @NotNull
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	@JsonDeserialize(using = LocalDateDeserializer.class)
-	@JsonSerialize(using = LocalDateSerializer.class) 
-    private LocalDate currentDate;
+	private LocalDate currentDate;
 	
     @NotEmpty(message="Please Enter Valid Status (Present/Absent)")
     @Pattern(regexp="(ABSENT|absent|Absent|PRESENT|present|Present)", message="Please enter valid Status")
@@ -55,6 +50,10 @@ public class AttendanceEntity {
     @ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
     @JoinColumn(name="subject_id")
     private SubjectEntity subjectEntity;
+
+	/*
+	 * Getters & Setters
+	 */
     
     public int getSubjectId() {
 		return subjectEntity.getSubjectId();
@@ -115,7 +114,11 @@ public class AttendanceEntity {
 		this.subjectEntity = subjectEntity;
 	}
 
-
+	/*
+	 * 
+	 * Constructors
+	 * 
+	 */
 	public AttendanceEntity(int attendanceId, @NotEmpty(message = "Please Enter Valid Semester") String semester,
 			@NotNull LocalDate currentDate,
 			@NotEmpty(message = "Please Enter Valid Status (Present/Absent)") @Pattern(regexp = "(absent|Absent|present|Present)", message = "Please enter valid Status") String status,

@@ -27,7 +27,6 @@ import com.capgemini.exception.SubjectNotFoundException;
 import com.capgemini.service.SubjectService;
 
 @RestController
-@RequestMapping("/Subject")
 public class SubjectController {
 	
 	@Autowired

@@ -21,7 +21,7 @@ import com.capgemini.exception.SubjectNotFoundException;
 import com.capgemini.service.AttendanceService;
 
 @RestController
-@RequestMapping("/Attendance")
+@RequestMapping("/Attendances")
 public class AttendanceController {
 
 	@Autowired

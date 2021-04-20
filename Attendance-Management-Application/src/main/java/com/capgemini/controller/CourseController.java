@@ -23,7 +23,6 @@ import com.capgemini.service.CourseService;
 
 
 @RestController
-@RequestMapping("/Course")
 public class CourseController {
 	
 	@Autowired

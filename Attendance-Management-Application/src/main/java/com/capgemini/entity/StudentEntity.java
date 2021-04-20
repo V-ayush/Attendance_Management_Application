@@ -51,9 +51,6 @@ public class StudentEntity {
 	private String lastName;
 	
 	@NotNull
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "DD/MM/YYYY")
-	@JsonDeserialize(using = LocalDateDeserializer.class)
-	@JsonSerialize(using = LocalDateSerializer.class)
 	@Column(name = "DOB")
 	private LocalDate dateOfBirth;
 	
